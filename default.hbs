@@ -64,6 +64,13 @@
 
 {{ghost_foot}}
 <script src="/assets/js/index.min.js"></script>
+<script type="text/javascript" src="{{asset "js/jquery.fitvids.js"}}"></script>
+<script>
+        $(document).ready(function(){
+            // Target your .container, .wrapper, .post, etc.
+            $(".post-content").fitVids();
+        });
+    </script>
 
 </body>
 </html>
