@@ -1,4 +1,4 @@
-# Ghostentista [![Project Status](http://stillmaintained.com/viktorbezdek/ghostentista.png)](http://stillmaintained.com/viktorbezdek/ghostentista)
+# Ghostentista [![Project Status](http://stillmaintained.com/viktorbezdek/ghostentista.png)](http://stillmaintained.com/viktorbezdek/ghostentista) [![GitHub version](https://badge.fury.io/gh/viktorbezdek%2Fghostentista.png)](http://badge.fury.io/gh/viktorbezdek%2Fghostentista)
 
 ## Theme for Ghost Blogging Platform
 
@@ -23,6 +23,10 @@ Responsive, asynchronous, content centric theme for Ghost. Inspired by my own Wo
 - Menu for pages
 - Theme Builder (choose font, colors...)
 - Developer version (Grunt built, Bower packages support, Auto-wired RequireJS)
+
+### Like it? Tip it ;)
+Support this project via [gittip](https://www.gittip.com/viktorbezdek/).
+[![Support via Gittip](https://rawgithub.com/twolfson/gittip-badge/0.1.0/dist/gittip.png)](https://www.gittip.com/viktorbezdek/)
 
 ### Changelog
 
