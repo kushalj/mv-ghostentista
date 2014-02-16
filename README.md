@@ -9,7 +9,7 @@ Responsive, asynchronous, content centric theme for Ghost. Inspired by my own Wo
 ### Demo
 - [Latest version can be seen at Etheeks.com](http://www.etheeks.com)
 
-### Features
+## Features
 - Responsive (images, videos included)
 - Optimal letters per line for great reading experience
 - Simple configuration in `assets/js/config.js`
@@ -24,11 +24,15 @@ Responsive, asynchronous, content centric theme for Ghost. Inspired by my own Wo
 - Theme Builder (choose font, colors...)
 - Developer version (Grunt built, Bower packages support, Auto-wired RequireJS)
 
-### Like it? Tip it ;)
+## Like it? Tip it ;)
+
 Support this project via [gittip](https://www.gittip.com/viktorbezdek/).
+
 [![Support via Gittip](https://rawgithub.com/twolfson/gittip-badge/0.1.0/dist/gittip.png)](https://www.gittip.com/viktorbezdek/)
 
-### Changelog
+___
+
+## Changelog
 
 ### 0.6.0
 - loading assets using ghosts helpers bug #10
