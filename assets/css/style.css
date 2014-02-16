@@ -22,14 +22,6 @@
   font-style: normal;
 }
 
-@font-face {
-  font-family: 'ghostentista';
-  src: url('../fonts/icons/ghostentista.eot?35283255');
-  src: url('../fonts/icons/ghostentista.eot?35283255#iefix') format('embedded-opentype'), url('../fonts/icons/ghostentista.woff?35283255') format('woff'), url('../fonts/icons/ghostentista.ttf?35283255') format('truetype'), url('../fonts/icons/ghostentista.svg?35283255#ghostentista') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-
 .ghostentista-font {
   font-family: "ghostentista";
   font-style: normal;
@@ -46,6 +38,18 @@
   margin-left: .2em;
 }
 
+@font-face {
+  font-family: 'ghostentista';
+  src: url('../fonts/icons/ghostentista.eot?20644569');
+  src: url('../fonts/icons/ghostentista.eot?20644569#iefix') format('embedded-opentype'), url('../fonts/icons/ghostentista.woff?20644569') format('woff'), url('../fonts/icons/ghostentista.ttf?20644569') format('truetype'), url('../fonts/icons/ghostentista.svg?20644569#ghostentista') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+
 [class^="icon-"]:before,
 [class*=" icon-"]:before {
   font-family: "ghostentista";
@@ -57,10 +61,19 @@
   width: 1em;
   margin-right: .2em;
   text-align: center;
+  /* opacity: .8; */
+  /* For safety - reset parent styles, that can break glyph codes*/
   font-variant: normal;
   text-transform: none;
+  /* fix buttons height, for twitter bootstrap */
   line-height: 1em;
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
   margin-left: .2em;
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
 
 .icon-code:before {
@@ -69,11 +82,11 @@
 
 /* '' */
 
-.icon-rdio-circled:before {
-  content: '\f325';
+.icon-soundcloud-circled:before {
+  content: '\f08a';
 }
 
-/* '' */
+/* '' */
 
 .icon-github-circled:before {
   content: '\f301';
@@ -105,23 +118,23 @@
 
 /* '' */
 
+.icon-gplus-circled:before {
+  content: '\f310';
+}
+
+/* '' */
+
 .icon-menu-1:before {
   content: '\2630';
 }
 
 /* '☰' */
 
-.icon-pinterest-circled:before {
-  content: '\f313';
+.icon-mail-circled:before {
+  content: '\e0ea';
 }
 
-/* '' */
-
-.icon-tumblr-circled:before {
-  content: '\f316';
-}
-
-/* '' */
+/* '' */
 
 .icon-linkedin-circled:before {
   content: '\f319';
@@ -147,15 +160,29 @@
 
 /* '' */
 
-.icon-gplus-circled:before {
-  content: '\f310';
+.icon-rdio-circled:before {
+  content: '\f325';
 }
 
-.icon-mail-circled:before {
-  content: '\e0ea';
+/* '' */
+
+.icon-pinterest-circled:before {
+  content: '\f313';
 }
 
-/* '' */
+/* '' */
+
+.icon-instagram-circled:before {
+  content: '\f05e';
+}
+
+/* '' */
+
+.icon-tumblr-circled:before {
+  content: '\f316';
+}
+
+/* '' */
 
 body {
   width: 100%;
@@ -646,7 +673,9 @@ nav#pagination {
   text-align: center;
 }
 
-nav#pagination #more-posts {
+nav#pagination #next-posts,
+nav#pagination #prev-posts {
+  display: inline-block;
   margin: 0 auto;
   border: 1px solid #dddddd;
   background-color: #f4f4f4;
@@ -659,7 +688,8 @@ nav#pagination #more-posts {
   font-size: 1em;
 }
 
-nav#pagination #more-posts:hover {
+nav#pagination #next-posts:hover,
+nav#pagination #prev-posts:hover {
   background-color: #3a4145;
   border-color: #3a4145;
   color: #dddddd;
@@ -670,11 +700,6 @@ nav#pagination #more-posts:hover {
   height: 50px;
   display: block;
   clear: both;
-}
-
-.headerBackground {
-  background: -webkit-linear-gradient(top, rgba(35, 83, 138, 0.9) 0%, rgba(52, 130, 173, 0.9) 100%);
-  background: linear-gradient(to bottom, rgba(35, 83, 138, 0.9) 0%, rgba(52, 130, 173, 0.9) 100%);
 }
 
 body.no-fixed-elements header#site-head {
@@ -692,8 +717,6 @@ body.no-fixed-elements main.content {
   position: fixed;
   top: -5rem;
   height: 4rem;
-  background: -webkit-linear-gradient(top, rgba(35, 83, 138, 0.9) 0%, rgba(52, 130, 173, 0.9) 100%);
-  background: linear-gradient(to bottom, rgba(35, 83, 138, 0.9) 0%, rgba(52, 130, 173, 0.9) 100%);
   z-index: 100;
 }
 
@@ -778,8 +801,6 @@ header#site-head .vertical a {
 header#site-head #site-head-content {
   -webkit-transition: all 0.5s ease-out;
   transition: all 0.5s ease-out;
-  background: -webkit-linear-gradient(top, rgba(35, 83, 138, 0.9) 0%, rgba(52, 130, 173, 0.9) 100%);
-  background: linear-gradient(to bottom, rgba(35, 83, 138, 0.9) 0%, rgba(52, 130, 173, 0.9) 100%);
   border-radius: 10em;
   margin: 0 auto;
   width: 20em;
@@ -1377,4 +1398,18 @@ footer.site-footer .inner .get-connected a:hover {
 }
 
 @keyframes logo-anim {
+}
+
+.cf {
+  *zoom: 1;
+}
+
+.cf:before,
+.cf:after {
+  content: "";
+  display: table;
+}
+
+.cf:after {
+  clear: both;
 }

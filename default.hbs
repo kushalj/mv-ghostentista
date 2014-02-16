@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
@@ -11,12 +12,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
 
     <script src="//polyfill.io/"></script>
+    <script src="{{asset "/js/config.js"}}"></script>
 
     <link rel="stylesheet" src="//polyfill.io/normalize.css"/>
-    <link rel="stylesheet" type="text/css" href="/assets/css/style.min.css"/>
+    <link rel="stylesheet" type="text/css" href="{{asset "css/style.min.css"}}"/>
 
     {{ghost_head}}
 </head>
+
 <body class="{{body_class}}">
 
 <header id="site-head" {{#if @blog.cover}}style="background-image: url({{@blog.cover}})"{{/if}}>
@@ -41,16 +44,11 @@
         <div class="get-connected">
             <h3>Connect with me</h3>
             <p>
-                <a class="icon-gplus-circled" href="#" target="_blank"></a>
-                <a class="icon-twitter-circled" href="#" target="_blank"></a>
-                <a class="icon-mail-circled" href="#" target="_blank"></a>
-                <a class="icon-github-circled" href="#" target="_blank"></a>
-                <a class="icon-linkedin-circled" href="#" target="_blank"></a>
             </p>
         </div>
         <div class="about">
             <h3>About author</h3>
-            <p>Lorem ipsum dolor Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
+            <p>{{@author.bio}}</p>
         </div>
         <div class="copybox">
             <p>Copyright &copy; 2013 <a href="/">{{@blog.title}}</a></p>
@@ -63,14 +61,8 @@
 </footer>
 
 {{ghost_foot}}
-<script src="/assets/js/index.min.js"></script>
-<script type="text/javascript" src="{{asset "js/jquery.fitvids.js"}}"></script>
-<script>
-        $(document).ready(function(){
-            // Target your .container, .wrapper, .post, etc.
-            $(".post-content").fitVids();
-        });
-    </script>
+
+<script src="{{asset "js/index.min.js"}}"></script>
 
 </body>
 </html>

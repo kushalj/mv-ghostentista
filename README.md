@@ -1,7 +1,8 @@
 # Ghostentista [![Project Status](http://stillmaintained.com/viktorbezdek/ghostentista.png)](http://stillmaintained.com/viktorbezdek/ghostentista)
 
 ## Theme for Ghost Blogging Platform
-### version 0.5.1
+
+### version 0.6
 
 Responsive, asynchronous, content centric theme for Ghost. Inspired by my own WordPress theme Kontentista (not quite finished). Built using modern web technologies and with a help of LESS preprocessor. Tested on IE9+, Chrome Firefox, Safari, iOS7 and Android 4.3 on Nexus 7.
 
@@ -9,16 +10,29 @@ Responsive, asynchronous, content centric theme for Ghost. Inspired by my own Wo
 - [Latest version can be seen at Etheeks.com](http://www.etheeks.com)
 
 ### Features
+- Responsive (images, videos included)
 - Optimal letters per line for great reading experience
+- Simple configuration in `assets/js/config.js`
 - Prism code highlighting
-- Asynchronous paging
-- History.js enabled
 - Related articles under posts
+- Fluid width video embeds
 - Social sharing
 - Animations and modern layout approach
 
+### Coming soon
+- Menu for pages
+- Theme Builder (choose font, colors...)
+- Developer version (Grunt built, Bower packages support, Auto-wired RequireJS)
 
 ### Changelog
+
+### 0.6.0
+- loading assets using ghosts helpers bug #10
+- template for pages
+- working correctly on Android 4.3 default browser bug #7
+- got rid of async page loading so we are compatible with disqus bug #8
+- configuration in `assets/js/config.js` - social networks, logo background, google analytics
+- properly implemented fitvids
 
 ### 0.5.1
 - fixed ios < 7 fixed layout issue
