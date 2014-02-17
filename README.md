@@ -1,5 +1,7 @@
 # Ghostentista [![Project Status](http://stillmaintained.com/viktorbezdek/ghostentista.png)](http://stillmaintained.com/viktorbezdek/ghostentista) [![GitHub version](https://badge.fury.io/gh/viktorbezdek%2Fghostentista.png)](http://badge.fury.io/gh/viktorbezdek%2Fghostentista)
 
+# <font color='red'>Current version is broken. Fixed will be published later today. Please do not update to this version! (written 17.02.2014 18:30)</font>
+
 ## Theme for Ghost Blogging Platform
 
 ### version 0.6
