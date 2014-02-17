@@ -1,6 +1,8 @@
 # Ghostentista [![Project Status](http://stillmaintained.com/viktorbezdek/ghostentista.png)](http://stillmaintained.com/viktorbezdek/ghostentista) [![GitHub version](https://badge.fury.io/gh/viktorbezdek%2Fghostentista.png)](http://badge.fury.io/gh/viktorbezdek%2Fghostentista)
 
-# <div style='color: red; text-align: center;'>Current version is broken. Fixed will be published later today. Please do not update to this version! (written 17.02.2014 18:30)</div>
+# <div style='color: red; text-align: center;'>Current version is broken. Fixed will be published later today. Please do not update to this version! 
+
+(written 17.02.2014 18:30)</div>
 
 ## Theme for Ghost Blogging Platform
 
