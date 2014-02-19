@@ -48,35 +48,15 @@
             </p>
         </div>
         <div class="about">
-            <h3>Newsletter</h3>
-
-            <p>
-                I will never send you spam, advertisements or any other shit. Your email address is safe with me.
-            </p>
-
-            <p>
-		<a name="newsletter"></a>
-            <form action="http://viktorbezdek.us3.list-manage1.com/subscribe/post?u=356b617bf70332c3170679439&amp;id=2a2b453e64"
-                  method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form"
-                  class="validate" target="_blank" novalidate>
-                    <input type="email" value="" name="EMAIL" class="email form-control" id="mce-EMAIL"
-                           placeholder="email address" required/>
-
-                <div style="position: absolute; left: -5000px;">
-                    <input type="text" name="b_356b617bf70332c3170679439_2a2b453e64" value=""/>
-                </div>
-	          <button type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe"
-                    class="btn btn-default mailchimp">Subscribe
-            </button>
-            </form>
-            </p>
+            <h3>About {{@blog.title}}</h3>
+		<p>{{@blog.description}}</p>
         </div>
         <div class="copybox">
             <p>Copyright &copy; 2013 <a href="/">{{@blog.title}}</a></p>
 
             <p class="poweredby">
                 Proudly powered by <a href="http://www.ghost.org" target="_blank">GHOST</a>.<br/>
-                Theme <a href="https://github.com/viktorbezdek/ghostentista">ghostentista</a>
+                Theme <a href="https://github.com/viktorbezdek/ghostentista" title="ghostentista 1.0.0 by Viktor Bezdek">ghostentista</a>
                 by <a href="http://www.viktorbezdek.cz">Viktor Bezdek</a>.
             </p>
         </div>

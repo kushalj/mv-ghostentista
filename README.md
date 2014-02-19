@@ -32,7 +32,9 @@ ____
 - Slimstrap styled forms and components
 - Featured posts support
 - Menu support (By adding links to `assets/js/config.js` file. No other way. Blame @TryGhost)
-- Custom error page
+- Custom `error.hbs` page
+- Smart logo colors by detecting background color with `BackgroundCheck.js`
+- The Configurator
 @todo complete this
 ____
 ### 0.6.0
