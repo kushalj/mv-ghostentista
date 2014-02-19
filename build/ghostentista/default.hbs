@@ -17,7 +17,7 @@
     <link rel="stylesheet" src="//polyfill.io/normalize.css"/>
     <link rel="stylesheet" type="text/css" href="{{asset "css/style.min.css"}}"/>
 
-    {{ghost_head}}
+	{{ghost_head}}
 </head>
 
 <body class="{{body_class}}">
@@ -28,7 +28,7 @@
             <div id="site-head-content" class="inner">
                 <h1 class="blog-title{{#if @blog.logo}} image-logo{{/if}}"{{#if @blog.logo}}
                     style="background-image: url('{{@blog.logo}}')"{{/if}}>
-                    {{@blog.title}}
+			    {{@blog.title}}
                 </h1>
 
                 <h2 class="blog-description">{{@blog.description}}</h2>
@@ -43,18 +43,41 @@
     <div class="inner">
         <div class="get-connected">
             <h3>Connect with me</h3>
+
             <p>
             </p>
         </div>
         <div class="about">
-            <h3>About author</h3>
-            <p>{{@author.bio}}</p>
+            <h3>Newsletter</h3>
+
+            <p>
+                I will never send you spam, advertisements or any other shit. Your email address is safe with me.
+            </p>
+
+            <p>
+		<a name="newsletter"></a>
+            <form action="http://viktorbezdek.us3.list-manage1.com/subscribe/post?u=356b617bf70332c3170679439&amp;id=2a2b453e64"
+                  method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form"
+                  class="validate" target="_blank" novalidate>
+                    <input type="email" value="" name="EMAIL" class="email form-control" id="mce-EMAIL"
+                           placeholder="email address" required/>
+
+                <div style="position: absolute; left: -5000px;">
+                    <input type="text" name="b_356b617bf70332c3170679439_2a2b453e64" value=""/>
+                </div>
+	          <button type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe"
+                    class="btn btn-default mailchimp">Subscribe
+            </button>
+            </form>
+            </p>
         </div>
         <div class="copybox">
             <p>Copyright &copy; 2013 <a href="/">{{@blog.title}}</a></p>
+
             <p class="poweredby">
                 Proudly powered by <a href="http://www.ghost.org" target="_blank">GHOST</a>.<br/>
-                Theme <a href="https://github.com/viktorbezdek/ghostentista">ghostentista</a> by <a href="http://www.viktorbezdek.cz">Viktor Bezdek</a>.
+                Theme <a href="https://github.com/viktorbezdek/ghostentista">ghostentista</a>
+                by <a href="http://www.viktorbezdek.cz">Viktor Bezdek</a>.
             </p>
         </div>
     </div>
@@ -63,6 +86,10 @@
 {{ghost_foot}}
 
 <script src="{{asset "js/index.min.js"}}"></script>
+<a href="https://github.com/viktorbezdek/ghostentista"><img
+        style="position: absolute; top: 0; left: 0; border: 0; z-index: 99999;"
+        src="https://github-camo.global.ssl.fastly.net/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67"
+        alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
 
 </body>
 </html>

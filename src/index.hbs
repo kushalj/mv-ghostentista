@@ -4,9 +4,9 @@
     <div class="article-wrapper">
 	    {{#if pagination.prev}}
 
-		    {{#foreach posts}}
+		    {{#foreach posts ~}}
 
-                    <article class="{{post_class}}">
+		        <article class="{{post_class}}{{#if featured}} featured{{/if}}">
                         <header class="post-header">
                         <span class="post-meta">
                             <time datetime="{{date published_at timeago="true"}}">{{date published_at timeago="true"}}</time>
@@ -24,11 +24,11 @@
 			    {{#if @even}}
                           <hr class="post-sep"/>{{/if}}
 
-		    {{/foreach}}
+		    {{~/foreach}}
 
 	    {{else}}
 
-		    {{#foreach posts}}
+		    {{#foreach posts ~}}
 
 			    {{#if @first}}
                           <article class="latest-post">
@@ -48,7 +48,7 @@
 
                           <hr class="post-sep"/>
 			    {{/if}}
-		    {{/foreach}}
+		    {{~/foreach}}
 
 		    {{#foreach posts}}
 

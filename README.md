@@ -1,28 +1,40 @@
 # Ghostentista [![Project Status](http://stillmaintained.com/viktorbezdek/ghostentista.png)](http://stillmaintained.com/viktorbezdek/ghostentista)
 
-
-
 ## Theme for Ghost Blogging Platform
 
-### version 0.6
+### version 1.0.0-dev
 
+@todo rewrite this
 Responsive, asynchronous, content centric theme for Ghost. Inspired by my own WordPress theme Kontentista (not quite finished). Built using modern web technologies and with a help of LESS preprocessor. Tested on IE9+, Chrome Firefox, Safari, iOS7 and Android 4.3 on Nexus 7.
 
 ### Demo
 - [Latest version can be seen at Etheeks.com](http://www.etheeks.com)
+- [Join newsletter here](http://www.etheeks.com/#newsletter)
 
 ### Features
-- Optimal letters per line for great reading experience
-- Prism code highlighting
-- Asynchronous paging
-- History.js enabled
-- Related articles under posts
-- Social sharing
-- Animations and modern layout approach
+@todo rewrite completely
 
+### How to build and stuff
+@todo write guide
 
-### Changelog
+____
+### Known issues
+DEV
 
+____
+## Changelog
+
+### 1.0.0
+- Grunt build for great and easy local development
+- Easy customisation of colors and stuff in config.less
+- Using open source fonts
+- Enhanced typography (optimal chars per line on each platform)
+- Slimstrap styled forms and components
+- Featured posts support
+- Menu support (By adding links to `assets/js/config.js` file. No other way. Blame @TryGhost)
+- Custom error page
+@todo complete this
+____
 ### 0.6.0
 - loading assets using ghosts helpers bug #10
 - template for pages
@@ -69,9 +81,6 @@ _____
 - nifty animation on image logo
 - temporarily removed footer static position until I have nervs to deal with fraking iOS7
 - pagination working
-   
-## Known issues
-None. If you find something, report it and it will be fixed in next commit
 
 ## Copyright & License
 
