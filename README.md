@@ -32,6 +32,7 @@ ____
 - Support for all languages using latin and latin extended alphabet
 - Enhanced typography (optimal chars per line on each platform)
 - Trendy slabby headlines
+- Responsive masonry(ish) layout
 - Nanostrap (Bootstrap) styled forms and components for convenience
 - Featured posts support
 - FitVids.js for responsive videos (thanks @anieto)

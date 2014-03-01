@@ -96,6 +96,7 @@ $(function () {
 
 	// resize does equalization of post titles
 	$window.resize(function () {
+		/*
 		var articles = $('.post');//.find('h2.page-title');
 		for (var x = 0; x < articles.length; x += 2) {
 			var ea = $(articles[x]).find('.post-title');
@@ -110,6 +111,7 @@ $(function () {
 			ea.css({height: th, paddingTop: eh < oh ? pt : 0});
 			oa.css({height: th, paddingTop: eh > oh ? pt : 0});
 		}
+		*/
 		$window.trigger('scroll');
 	});
 
@@ -137,6 +139,7 @@ $(function () {
 			}, Math.random() * 200);
 		});
 	}, 500);
+
 
 	// if on home, updates related posts in local storage
 	// if on posts, displays related posts if available

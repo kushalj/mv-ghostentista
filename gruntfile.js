@@ -21,6 +21,7 @@ module.exports = function (grunt) {
                     'build/ghostentista/assets/js/index.min.js': [
 						'src/assets/js/jquery.slabtext.js',
 						'src/assets/js/jquery.fitvids.js',
+						'src/assets/js/salvattore.js',
 						'src/assets/js/index.js'
                     ]
                 }
@@ -33,7 +34,8 @@ module.exports = function (grunt) {
                     'build/ghostentista/assets/js/index.js': [
 						'src/assets/js/jquery.slabtext.js',
 						'src/assets/js/jquery.fitvids.js',
-                        'src/assets/js/index.js'
+						'src/assets/js/salvattore.js',
+						'src/assets/js/index.js'
                     ]
                 }
             }

@@ -14,9 +14,9 @@
 @linkHover: #b51e3e;
 @accent: rgba(112, 189, 255, 0.91);
 @featuredBg: #d6f5ff;
-@contentBg: #fff;
+@contentBg: rgb(245, 245, 245);
 @subtle: #ddd;
-@maxLayoutWidth: 60rem;
+@maxLayoutWidth: 90rem;
 
 //==============================================================================
 // Assign fonts
@@ -194,7 +194,7 @@ header#site-head {
   height: @headerHeight;
   width: 100%;
   background-position: 50% 50%;
-  background-size: cover;
+  //background-size: cover;
   font-size: 2.5em;
   .vertical {
     width: 100%;
@@ -265,57 +265,54 @@ main.content {
   overflow: hidden;
   box-shadow: 0 0px 30px 0 rgba(0, 0, 0, 0.35);
   background-color: @contentBg;
-  padding: 5rem 0 3em 0;
+  padding: 3rem 0 3em 0;
   margin: @headerHeight auto 0;
   font-size: 3em;
 
   .article-wrapper {
+    width: 100%;
     max-width: @maxLayoutWidth;
     margin: 0 auto;
     padding: 0 2em;
   }
-
+  #timeline {
+    margin: 0em;
+  }
   article {
-    transition: opacity 0.3s ease;
+    background-color: #ffffff;
+    transition: all 0.3s ease;
     opacity: 1;
+    display: block;
     &.loading {
       opacity: 0;
     }
     &.post {
       padding: 1.5em;
-      .column(12);
+      border: 0.5em solid @contentBg;
+      //.col(12);
+      width: 100% !important;
     }
     &.detail-post {
+      background-color: transparent;
       h1 {
         font-size: 5.5em;
       }
       img {
         max-width: 100%;
       }
+      p {
+        text-shadow: -1px 0 0 #fff;
+      }
     }
     &.latest-post {
-      .column(12);
+      max-width: 35em;
+      //.col(12);
+      //background-color: transparent;
+      width: 100%;
       font-size: 1.35em;
-      margin-bottom: 2em;
-      &:after {
-        font-style: normal;
-        font-weight: normal;
-        speak: none;
-        display: inline-block;
-        text-decoration: inherit;
-        text-align: center;
-        font-variant: normal;
-        text-transform: none;
-        position: absolute;
-        width: 14%;
-        height: 2%;
-        font-size: 2.5em;
-        font-family: 'ghostentista';
-        content: '\f121';
-        left: 43%;
-        margin-top: 0em;
-        color: @subtle;
-      }
+      margin: 2em auto 0;
+      padding: 1.5em;
+      border: 0.5em solid @contentBg;
     }
     &.featured {
       background-color: @featuredBg;
@@ -364,7 +361,7 @@ main.content {
       font-size: 4em;
       margin: 0.25em 0 1rem;
       text-align: center;
-      transition: transform 0.2s ease;
+      transition: all 0.3s ease;
       width: 100%;
       a {
         transition: color 0.2s ease;
@@ -393,7 +390,7 @@ main.content {
   }
 
   .post-content {
-    margin-bottom: 3em;
+    //margin-bottom: 3em;
   }
 
   nav.pagination {
@@ -457,7 +454,7 @@ main.content {
     .author {
       padding: 0 2rem 2rem 0;
       border: 1px solid @subtle;
-      background-color: lighten(@subtle, 9%);
+      background-color: lighten(@subtle, 30%);
       border-radius: 1em;
       min-height: 10.5em;
       .image {
@@ -533,7 +530,7 @@ footer.site-footer {
       bottom: 1em;
       text-align: right;
       opacity: 0.5;
-      .column(4);
+      .col(4);
       a:hover {
         color: #fff;
       }
@@ -548,10 +545,10 @@ footer.site-footer {
       }
     }
     .about {
-      .column(4);
+      .col(4);
     }
     .get-connected {
-      .column(4);
+      .col(4);
       padding: 0;
       text-align: center;
       a {
@@ -646,7 +643,7 @@ footer.site-footer {
   footer.site-footer .inner {
     padding: 0 1em;
     .copybox, .about, .get-connected {
-      .column(12) !important;
+      .col(12) !important;
       p {
         margin-top: 0.5em;
       }
@@ -677,7 +674,6 @@ footer.site-footer {
     h2 {
       height: auto !important;
     }
-    margin-bottom: 3em !important;
   }
 
   article.latest-post:after {
@@ -701,25 +697,25 @@ footer.site-footer {
 @media screen and (min-width: 60rem) {
   section.share {
     h4 {
-      .column(6);
+      .col(6);
     }
 
     .links {
-      .column(6);
+      .col(6);
     }
   }
 
   main.content {
     article {
       .image {
-        .column(3);
+        .col(3);
       }
       .about {
-        .column(9);
+        .col(9);
       }
     }
     article.post {
-      .column(6);
+      .col(6);
     }
   }
 }
