@@ -1,11 +1,8 @@
 # Ghostentista [![Project Status](http://stillmaintained.com/viktorbezdek/ghostentista.png)](http://stillmaintained.com/viktorbezdek/ghostentista)
-
 ## Theme for Ghost Blogging Platform
+version 1.0.0-alpha
 
-### version 1.0.0-dev
-
-@todo rewrite this
-Responsive, asynchronous, content centric theme for Ghost. Inspired by my own WordPress theme Kontentista (not quite finished). Built using modern web technologies and with a help of LESS preprocessor. Tested on IE9+, Chrome Firefox, Safari, iOS7 and Android 4.3 on Nexus 7.
+Responsive, beautiful, usable, open source, content centric theme for Ghost Blogging Platform. Built using Grunt.js, styled using LESS, configurable and linted.
 
 ### Demo
 - [Latest version can be seen at Etheeks.com](http://www.etheeks.com)
@@ -19,7 +16,7 @@ Responsive, asynchronous, content centric theme for Ghost. Inspired by my own Wo
 
 ____
 ### Known issues
-DEV
+Probably lots of issues since its alpha.
 
 ____
 ## Like the theme? Want to show your appreciation?
@@ -30,16 +27,20 @@ ____
 
 ### 1.0.0
 - Grunt build for great and easy local development
-- Easy customisation of colors and stuff in config.less
-- Using open source fonts
+- Easy customisation of colors and stuff in style.less
+- New open source paragraph font Roboto
+- Support for all languages using latin and latin extended alphabet
 - Enhanced typography (optimal chars per line on each platform)
-- Slimstrap styled forms and components
+- Trendy slabby headlines
+- Nanostrap (Bootstrap) styled forms and components for convenience
 - Featured posts support
-- Menu support (By adding links to `assets/js/config.js` file. No other way. Blame @TryGhost)
-- Custom `error.hbs` page
-- Smart logo colors by detecting background color with `BackgroundCheck.js`
-- The Configurator
-@todo complete this
+- FitVids.js for responsive videos (thanks @anieto)
+- Lots of changes, tweaks and enhancements
+- (NOT YET) Component helpers - gallery, masonry, buttons, highlights and other cool stuff
+- (NOT YET) Menu support (By adding links to `assets/js/config.js` file. No other way. Blame @TryGhost)
+- (NOT YET) Custom `error.hbs` page
+- (NOT YET) Smart logo colors by detecting background color with `BackgroundCheck.js`
+- (FAR FROM DONE) The Configurator
 ____
 ### 0.6.0
 - loading assets using ghosts helpers bug #10

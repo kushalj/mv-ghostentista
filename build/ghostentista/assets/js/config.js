@@ -1,5 +1,6 @@
 /*------------------------------------------------------------------
- Copyright (c) 2013-2014 Viktor Bezdek - Released under The MIT License.
+ Copyright (c) 2013-2014 Viktor Bezdek
+ - Released under The MIT License
 
  Permission is hereby granted, free of charge, to any person
  obtaining a copy of this software and associated documentation
@@ -37,6 +38,7 @@ var config = {
 		pinterest: '',			// ex: https://pinterest.com/username
 		instagram: ''			// ex: http://instagram.com/username
 	},
+	showThemeBadge: true,		// Show or hide theme and platform credits
 	googleAnalytics: '', 		// ex: UA-XXXXX-XX, if empty will not track anything
 	logoBackground: 'rgba(0,0,0,0.75)' 	// Enter anything which suits css background shorthand. Ex: #ffcc00, green
 }

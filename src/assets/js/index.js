@@ -1,5 +1,6 @@
 /*------------------------------------------------------------------
- Copyright (c) 2013-2014 Viktor Bezdek - Released under The MIT License.
+ Copyright (c) 2013-2014 Viktor Bezdek
+ - Released under The MIT License.
 
  Permission is hereby granted, free of charge, to any person
  obtaining a copy of this software and associated documentation
@@ -23,17 +24,8 @@
  OTHER DEALINGS IN THE SOFTWARE.
  ----------------------------------------------------------------*/
 
-/*
- <a class="icon-gplus-circled" href="#" target="_blank"></a>
- <a class="icon-twitter-circled" href="#" target="_blank"></a>
- <a class="icon-mail-circled" href="#" target="_blank"></a>
- <a class="icon-github-circled" href="#" target="_blank"></a>
- <a class="icon-linkedin-circled" href="#" target="_blank"></a>
- <a class="icon-pinterest-circled" href="#" target="_blank"></a>
- <a class="icon-instagram-circled" href="#" target="_blank"></a>
- */
-
 $(function () {
+	var config = window.ghostentista.config;
 	var siteURL = location.host;
 	var internalLinksQuery = "a[href^='" + siteURL + "'], a[href^='/'], a[href^='./'], a[href^='../'], a[href^='#']";
 	var $window = $(window);
@@ -42,34 +34,19 @@ $(function () {
 	var $relatedPostsContainer = $('#related-posts-container');
 	var $logo = $('#site-head-content');
 	var $header = $('#site-head');
-	var config = window.ghostentista.config;
 	var $footerLinks = $('.get-connected p');
-	$mainContent.fitVids();
-	if (config.socialProfiles.facebook != '') {
-		$footerLinks.append($('<a class="icon-facebook-circled" href="' + config.socialProfiles.facebook + '" target="_blank"></a>'))
-	}
-	if (config.socialProfiles.email != '') {
-		$footerLinks.append($('<a class="icon-mail-circled" href="' + config.socialProfiles.email + '" target="_blank"></a>'))
-	}
-	if (config.socialProfiles.twitter != '') {
-		$footerLinks.append($('<a class="icon-twitter-circled" href="' + config.socialProfiles.twitter + '" target="_blank"></a>'))
-	}
-	if (config.socialProfiles.linkedIn != '') {
-		$footerLinks.append($('<a class="icon-linkedin-circled" href="' + config.socialProfiles.linkedIn + '" target="_blank"></a>'))
-	}
-	if (config.socialProfiles.github != '') {
-		$footerLinks.append($('<a class="icon-github-circled" href="' + config.socialProfiles.github + '" target="_blank"></a>'))
-	}
-	if (config.socialProfiles.pinterest != '') {
-		$footerLinks.append($('<a class="icon-pinterest-circled" href="' + config.socialProfiles.pinterest + '" target="_blank"></a>'))
-	}
-	if (config.socialProfiles.instagram != '') {
-		$footerLinks.append($('<a class="icon-instagram-circled" href="' + config.socialProfiles.instagram + '" target="_blank"></a>'))
-	}
-	if(config.logoBackground != '') {
-		$logo.css({background: config.logoBackground});
 
-	}
+	$mainContent.fitVids();
+
+	var socialProfiles = config.socialProfiles;
+	if (socialProfiles.facebook != '') $footerLinks.append($('<a class="icon-facebook-circled" href="' + socialProfiles.facebook + '" target="_blank"></a>'));
+	if (socialProfiles.email != '') $footerLinks.append($('<a class="icon-mail-circled" href="' + socialProfiles.email + '" target="_blank"></a>'));
+	if (socialProfiles.twitter != '') $footerLinks.append($('<a class="icon-twitter-circled" href="' + socialProfiles.twitter + '" target="_blank"></a>'));
+	if (socialProfiles.linkedIn != '') $footerLinks.append($('<a class="icon-linkedin-circled" href="' + socialProfiles.linkedIn + '" target="_blank"></a>'));
+	if (socialProfiles.github != '') $footerLinks.append($('<a class="icon-github-circled" href="' + socialProfiles.github + '" target="_blank"></a>'));
+	if (socialProfiles.pinterest != '') $footerLinks.append($('<a class="icon-pinterest-circled" href="' + socialProfiles.pinterest + '" target="_blank"></a>'));
+	if (socialProfiles.instagram != '') $footerLinks.append($('<a class="icon-instagram-circled" href="' + socialProfiles.instagram + '" target="_blank"></a>'));
+	if (config.logoBackground != '') $logo.css({background: config.logoBackground});
 
 	// ios < 7 fixed position bug
 	var ios = iOSversion();
@@ -151,10 +128,15 @@ $(function () {
 	$window.trigger('scroll');
 	$window.trigger('resize');
 	setTimeout(function () {
-		Prism.highlightElement();
-		$window.trigger('scroll');
-		$window.trigger('resize');
-	}, 200);
+		$('h2.post-title, h1.post-title').slabText({minCharsPerLine: 15});
+		$('article.loading').each(function () {
+			var $this = $(this);
+			setTimeout(function () {
+				$this.removeClass('loading');
+				$window.trigger('resize');
+			}, Math.random() * 200);
+		});
+	}, 500);
 
 	// if on home, updates related posts in local storage
 	// if on posts, displays related posts if available
@@ -216,7 +198,7 @@ $(function () {
 			m.parentNode.insertBefore(a, m)
 		})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-		ga('create', 'UA-xxxx');
+		ga('create', config.googleAnalytics);
 		ga('send', 'pageview');
 	}
 

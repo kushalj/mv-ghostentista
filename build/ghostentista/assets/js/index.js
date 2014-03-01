@@ -1,170 +1,248 @@
-(function () {
-    var e = /\blang(?:uage)?-(?!\*)(\w+)\b/i, t = self.Prism = {util: {type: function (e) {
-        return Object.prototype.toString.call(e).match(/\[object (\w+)\]/)[1]
-    }, clone: function (e) {
-        var n = t.util.type(e);
-        switch (n) {
-            case"Object":
-                var r = {};
-                for (var i in e)e.hasOwnProperty(i) && (r[i] = t.util.clone(e[i]));
-                return r;
-            case"Array":
-                return e.slice()
-        }
-        return e
-    }}, languages: {extend: function (e, n) {
-        var r = t.util.clone(t.languages[e]);
-        for (var i in n)r[i] = n[i];
-        return r
-    }, insertBefore: function (e, n, r, i) {
-        i = i || t.languages;
-        var s = i[e], o = {};
-        for (var u in s)if (s.hasOwnProperty(u)) {
-            if (u == n)for (var a in r)r.hasOwnProperty(a) && (o[a] = r[a]);
-            o[u] = s[u]
-        }
-        return i[e] = o
-    }, DFS: function (e, n) {
-        for (var r in e) {
-            n.call(e, r, e[r]);
-            t.util.type(e) === "Object" && t.languages.DFS(e[r], n)
-        }
-    }}, highlightAll: function (e, n) {
-        var r = document.querySelectorAll('code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code');
-        for (var i = 0, s; s = r[i++];)t.highlightElement(s, e === !0, n)
-    }, highlightElement: function (r, i, s) {
-        var o, u, a = r;
-        while (a && !e.test(a.className))a = a.parentNode;
-        if (a) {
-            o = (a.className.match(e) || [, ""])[1];
-            u = t.languages[o]
-        }
-        if (!u)return;
-        r.className = r.className.replace(e, "").replace(/\s+/g, " ") + " language-" + o;
-        a = r.parentNode;
-        /pre/i.test(a.nodeName) && (a.className = a.className.replace(e, "").replace(/\s+/g, " ") + " language-" + o);
-        var f = r.textContent;
-        if (!f)return;
-        f = f.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/\u00a0/g, " ");
-        var l = {element: r, language: o, grammar: u, code: f};
-        t.hooks.run("before-highlight", l);
-        if (i && self.Worker) {
-            var c = new Worker(t.filename);
-            c.onmessage = function (e) {
-                l.highlightedCode = n.stringify(JSON.parse(e.data), o);
-                t.hooks.run("before-insert", l);
-                l.element.innerHTML = l.highlightedCode;
-                s && s.call(l.element);
-                t.hooks.run("after-highlight", l)
-            };
-            c.postMessage(JSON.stringify({language: l.language, code: l.code}))
-        } else {
-            l.highlightedCode = t.highlight(l.code, l.grammar, l.language);
-            t.hooks.run("before-insert", l);
-            l.element.innerHTML = l.highlightedCode;
-            s && s.call(r);
-            t.hooks.run("after-highlight", l)
-        }
-    }, highlight: function (e, r, i) {
-        return n.stringify(t.tokenize(e, r), i)
-    }, tokenize: function (e, n, r) {
-        var i = t.Token, s = [e], o = n.rest;
-        if (o) {
-            for (var u in o)n[u] = o[u];
-            delete n.rest
-        }
-        e:for (var u in n) {
-            if (!n.hasOwnProperty(u) || !n[u])continue;
-            var a = n[u], f = a.inside, l = !!a.lookbehind, c = 0;
-            a = a.pattern || a;
-            for (var h = 0; h < s.length; h++) {
-                var p = s[h];
-                if (s.length > e.length)break e;
-                if (p instanceof i)continue;
-                a.lastIndex = 0;
-                var d = a.exec(p);
-                if (d) {
-                    l && (c = d[1].length);
-                    var v = d.index - 1 + c, d = d[0].slice(c), m = d.length, g = v + m, y = p.slice(0, v + 1), b = p.slice(g + 1), w = [h, 1];
-                    y && w.push(y);
-                    var E = new i(u, f ? t.tokenize(d, f) : d);
-                    w.push(E);
-                    b && w.push(b);
-                    Array.prototype.splice.apply(s, w)
-                }
-            }
-        }
-        return s
-    }, hooks: {all: {}, add: function (e, n) {
-        var r = t.hooks.all;
-        r[e] = r[e] || [];
-        r[e].push(n)
-    }, run: function (e, n) {
-        var r = t.hooks.all[e];
-        if (!r || !r.length)return;
-        for (var i = 0, s; s = r[i++];)s(n)
-    }}}, n = t.Token = function (e, t) {
-        this.type = e;
-        this.content = t
-    };
-    n.stringify = function (e, r, i) {
-        if (typeof e == "string")return e;
-        if (Object.prototype.toString.call(e) == "[object Array]")return e.map(function (t) {
-            return n.stringify(t, r, e)
-        }).join("");
-        var s = {type: e.type, content: n.stringify(e.content, r, i), tag: "span", classes: ["token", e.type], attributes: {}, language: r, parent: i};
-        s.type == "comment" && (s.attributes.spellcheck = "true");
-        t.hooks.run("wrap", s);
-        var o = "";
-        for (var u in s.attributes)o += u + '="' + (s.attributes[u] || "") + '"';
-        return"<" + s.tag + ' class="' + s.classes.join(" ") + '" ' + o + ">" + s.content + "</" + s.tag + ">"
-    };
-    if (!self.document) {
-        self.addEventListener("message", function (e) {
-            var n = JSON.parse(e.data), r = n.language, i = n.code;
-            self.postMessage(JSON.stringify(t.tokenize(i, t.languages[r])));
-            self.close()
-        }, !1);
-        return
-    }
-    var r = document.getElementsByTagName("script");
-    r = r[r.length - 1];
-    if (r) {
-        t.filename = r.src;
-        document.addEventListener && !r.hasAttribute("data-manual") && document.addEventListener("DOMContentLoaded", t.highlightAll)
-    }
-})();
-;
-Prism.languages.css = {comment: /\/\*[\w\W]*?\*\//g, atrule: {pattern: /@[\w-]+?.*?(;|(?=\s*{))/gi, inside: {punctuation: /[;:]/g}}, url: /url\((["']?).*?\1\)/gi, selector: /[^\{\}\s][^\{\};]*(?=\s*\{)/g, property: /(\b|\B)[\w-]+(?=\s*:)/ig, string: /("|')(\\?.)*?\1/g, important: /\B!important\b/gi, ignore: /&(lt|gt|amp);/gi, punctuation: /[\{\};:]/g};
-Prism.languages.markup && Prism.languages.insertBefore("markup", "tag", {style: {pattern: /(&lt;|<)style[\w\W]*?(>|&gt;)[\w\W]*?(&lt;|<)\/style(>|&gt;)/ig, inside: {tag: {pattern: /(&lt;|<)style[\w\W]*?(>|&gt;)|(&lt;|<)\/style(>|&gt;)/ig, inside: Prism.languages.markup.tag.inside}, rest: Prism.languages.css}}});
-;
-Prism.languages.css.selector = {pattern: /[^\{\}\s][^\{\}]*(?=\s*\{)/g, inside: {"pseudo-element": /:(?:after|before|first-letter|first-line|selection)|::[-\w]+/g, "pseudo-class": /:[-\w]+(?:\(.*\))?/g, "class": /\.[-:\.\w]+/g, id: /#[-:\.\w]+/g}};
-Prism.languages.insertBefore("css", "ignore", {hexcode: /#[\da-f]{3,6}/gi, entity: /\\[\da-f]{1,8}/gi, number: /[\d%\.]+/g, "function": /(attr|calc|cross-fade|cycle|element|hsla?|image|lang|linear-gradient|matrix3d|matrix|perspective|radial-gradient|repeating-linear-gradient|repeating-radial-gradient|rgba?|rotatex|rotatey|rotatez|rotate3d|rotate|scalex|scaley|scalez|scale3d|scale|skewx|skewy|skew|steps|translatex|translatey|translatez|translate3d|translate|url|var)/ig});
-;
-Prism.languages.clike = {comment: {pattern: /(^|[^\\])(\/\*[\w\W]*?\*\/|(^|[^:])\/\/.*?(\r?\n|$))/g, lookbehind: !0}, string: /("|')(\\?.)*?\1/g, "class-name": {pattern: /((?:(?:class|interface|extends|implements|trait|instanceof|new)\s+)|(?:catch\s+\())[a-z0-9_\.\\]+/ig, lookbehind: !0, inside: {punctuation: /(\.|\\)/}}, keyword: /\b(if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue)\b/g, "boolean": /\b(true|false)\b/g, "function": {pattern: /[a-z0-9_]+\(/ig, inside: {punctuation: /\(/}}, number: /\b-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee]-?\d+)?)\b/g, operator: /[-+]{1,2}|!|&lt;=?|>=?|={1,3}|(&amp;){1,2}|\|?\||\?|\*|\/|\~|\^|\%/g, ignore: /&(lt|gt|amp);/gi, punctuation: /[{}[\];(),.:]/g};
-;
-Prism.languages.javascript = Prism.languages.extend("clike", {keyword: /\b(var|let|if|else|while|do|for|return|in|instanceof|function|new|with|typeof|try|throw|catch|finally|null|break|continue)\b/g, number: /\b-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee]-?\d+)?|NaN|-?Infinity)\b/g});
-Prism.languages.insertBefore("javascript", "keyword", {regex: {pattern: /(^|[^/])\/(?!\/)(\[.+?]|\\.|[^/\r\n])+\/[gim]{0,3}(?=\s*($|[\r\n,.;})]))/g, lookbehind: !0}});
-Prism.languages.markup && Prism.languages.insertBefore("markup", "tag", {script: {pattern: /(&lt;|<)script[\w\W]*?(>|&gt;)[\w\W]*?(&lt;|<)\/script(>|&gt;)/ig, inside: {tag: {pattern: /(&lt;|<)script[\w\W]*?(>|&gt;)|(&lt;|<)\/script(>|&gt;)/ig, inside: Prism.languages.markup.tag.inside}, rest: Prism.languages.javascript}}});
-;
-Prism.languages.php = Prism.languages.extend("clike", {keyword: /\b(and|or|xor|array|as|break|case|cfunction|class|const|continue|declare|default|die|do|else|elseif|enddeclare|endfor|endforeach|endif|endswitch|endwhile|extends|for|foreach|function|include|include_once|global|if|new|return|static|switch|use|require|require_once|var|while|abstract|interface|public|implements|extends|private|protected|parent|static|throw|null|echo|print|trait|namespace|use|final|yield|goto|instanceof|finally|try|catch)\b/ig, constant: /\b[A-Z0-9_]{2,}\b/g});
-Prism.languages.insertBefore("php", "keyword", {delimiter: /(\?>|&lt;\?php|&lt;\?)/ig, variable: /(\$\w+)\b/ig, "package": {pattern: /(\\|namespace\s+|use\s+)[\w\\]+/g, lookbehind: !0, inside: {punctuation: /\\/}}});
-Prism.languages.insertBefore("php", "operator", {property: {pattern: /(->)[\w]+/g, lookbehind: !0}});
-Prism.languages.markup && (Prism.hooks.add("before-highlight", function (a) {
-    "php" === a.language && (a.tokenStack = [], a.code = a.code.replace(/(?:&lt;\?php|&lt;\?|<\?php|<\?)[\w\W]*?(?:\?&gt;|\?>)/ig, function (b) {
-        a.tokenStack.push(b);
-        return"{{{PHP" + a.tokenStack.length + "}}}"
-    }))
-}), Prism.hooks.add("after-highlight", function (a) {
-    if ("php" === a.language) {
-        for (var b = 0, c; c = a.tokenStack[b]; b++)a.highlightedCode = a.highlightedCode.replace("{{{PHP" + (b + 1) + "}}}", Prism.highlight(c, a.grammar, "php"));
-        a.element.innerHTML = a.highlightedCode
-    }
-}), Prism.hooks.add("wrap", function (a) {
-    "php" === a.language && "markup" === a.type && (a.content = a.content.replace(/(\{\{\{PHP[0-9]+\}\}\})/g, '<span class="token php">$1</span>'))
-}), Prism.languages.insertBefore("php", "comment", {markup: {pattern: /(&lt;|<)[^?]\/?(.*?)(>|&gt;)/g, inside: Prism.languages.markup}, php: /\{\{\{PHP[0-9]+\}\}\}/g}));
-;
-/*global jQuery */
+/*! jQuery slabtext plugin v2.3 MIT/GPL2 @freqdec */
+(function( $ ){
+
+	$.fn.slabText = function(options) {
+
+		var settings = {
+			// The ratio used when calculating the characters per line
+			// (parent width / (font-size * fontRatio)).
+			"fontRatio"             : 0.78,
+			// Always recalculate the characters per line, not just when the
+			// font-size changes? Defaults to true (CPU intensive)
+			"forceNewCharCount"     : true,
+			// Do we wrap ampersands in <span class="amp">
+			"wrapAmpersand"         : true,
+			// Under what pixel width do we remove the slabtext styling?
+			"headerBreakpoint"      : null,
+			"viewportBreakpoint"    : null,
+			// Don't attach a resize event
+			"noResizeEvent"         : false,
+			// By many milliseconds do we throttle the resize event
+			"resizeThrottleTime"    : 300,
+			// The maximum pixel font size the script can set
+			"maxFontSize"           : 999,
+			// Do we try to tweak the letter-spacing or word-spacing?
+			"postTweak"             : true,
+			// Decimal precision to use when setting CSS values
+			"precision"             : 3,
+			// The min num of chars a line has to contain
+			"minCharsPerLine"       : 0
+		};
+
+		// Add the slabtexted classname to the body to initiate the styling of
+		// the injected spans
+		$("body").addClass("slabtexted");
+
+		return this.each(function(){
+
+			if(options) {
+				$.extend(settings, options);
+			};
+
+			var $this               = $(this),
+				keepSpans           = $("span.slabtext", $this).length,
+				words               = keepSpans ? [] : String($.trim($this.text())).replace(/\s{2,}/g, " ").split(" "),
+				origFontSize        = null,
+				idealCharPerLine    = null,
+				fontRatio           = settings.fontRatio,
+				forceNewCharCount   = settings.forceNewCharCount,
+				headerBreakpoint    = settings.headerBreakpoint,
+				viewportBreakpoint  = settings.viewportBreakpoint,
+				postTweak           = settings.postTweak,
+				precision           = settings.precision,
+				resizeThrottleTime  = settings.resizeThrottleTime,
+				minCharsPerLine     = settings.minCharsPerLine,
+				resizeThrottle      = null,
+				viewportWidth       = $(window).width(),
+				headLink            = $this.find("a:first").attr("href") || $this.attr("href"),
+				linkTitle           = headLink ? $this.find("a:first").attr("title") : "";
+
+			if(!keepSpans && minCharsPerLine && words.join(" ").length < minCharsPerLine) {
+				return;
+			};
+
+			// Calculates the pixel equivalent of 1em within the current header
+			var grabPixelFontSize = function() {
+				var dummy = jQuery('<div style="display:none;font-size:1em;margin:0;padding:0;height:auto;line-height:1;border:0;">&nbsp;</div>').appendTo($this),
+					emH   = dummy.height();
+				dummy.remove();
+				return emH;
+			};
+
+			// Most of this function is a (very) stripped down AS3 to JS port of
+			// the slabtype algorithm by Eric Loyer with the original comments
+			// left intact
+			// http://erikloyer.com/index.php/blog/the_slabtype_algorithm_part_1_background/
+			var resizeSlabs = function resizeSlabs() {
+
+				// Cache the parent containers width
+				var parentWidth = $this.width(),
+					fs;
+
+				//Sanity check to prevent infinite loop
+				if(parentWidth === 0) {
+					return;
+				};
+
+				// Remove the slabtextdone and slabtextinactive classnames to enable the inline-block shrink-wrap effect
+				$this.removeClass("slabtextdone slabtextinactive");
+
+				if(viewportBreakpoint && viewportBreakpoint > viewportWidth
+					||
+					headerBreakpoint && headerBreakpoint > parentWidth) {
+					// Add the slabtextinactive classname to set the spans as inline
+					// and to reset the font-size to 1em (inherit won't work in IE6/7)
+					$this.addClass("slabtextinactive");
+					return;
+				};
+
+				fs = grabPixelFontSize();
+				// If the parent containers font-size has changed or the "forceNewCharCount" option is true (the default),
+				// then recalculate the "characters per line" count and re-render the inner spans
+				// Setting "forceNewCharCount" to false will save CPU cycles...
+				if(!keepSpans && (forceNewCharCount || fs != origFontSize)) {
+
+					origFontSize = fs;
+
+					var newCharPerLine      = Math.min(60, Math.floor(parentWidth / (origFontSize * fontRatio))),
+						wordIndex           = 0,
+						lineText            = [],
+						counter             = 0,
+						preText             = "",
+						postText            = "",
+						finalText           = "",
+						slice,
+						preDiff,
+						postDiff;
+
+					if(newCharPerLine != idealCharPerLine) {
+						idealCharPerLine = newCharPerLine;
+
+						while (wordIndex < words.length) {
+
+							postText = "";
+
+							// build two strings (preText and postText) word by word, with one
+							// string always one word behind the other, until
+							// the length of one string is less than the ideal number of characters
+							// per line, while the length of the other is greater than that ideal
+							while (postText.length < idealCharPerLine) {
+								preText   = postText;
+								postText += words[wordIndex] + " ";
+								if(++wordIndex >= words.length) {
+									break;
+								};
+							};
+
+							// This bit hacks in a minimum characters per line test
+							// on the last line
+							if(minCharsPerLine) {
+								slice = words.slice(wordIndex).join(" ");
+								if(slice.length < minCharsPerLine) {
+									postText += slice;
+									preText = postText;
+									wordIndex = words.length + 2;
+								};
+							};
+
+							// calculate the character difference between the two strings and the
+							// ideal number of characters per line
+							preDiff  = idealCharPerLine - preText.length;
+							postDiff = postText.length - idealCharPerLine;
+
+							// if the smaller string is closer to the length of the ideal than
+							// the longer string, and doesn’t contain less than minCharsPerLine
+							// characters, then use that one for the line
+							if((preDiff < postDiff) && (preText.length >= (minCharsPerLine || 2))) {
+								finalText = preText;
+								wordIndex--;
+								// otherwise, use the longer string for the line
+							} else {
+								finalText = postText;
+							};
+
+							// HTML-escape the text
+							finalText = $('<div/>').text(finalText).html()
+
+							// Wrap ampersands in spans with class `amp` for specific styling
+							if(settings.wrapAmpersand) {
+								finalText = finalText.replace(/&amp;/g, '<span class="amp">&amp;</span>');
+							};
+
+							finalText = $.trim(finalText);
+
+							lineText.push('<span class="slabtext">' + finalText + "</span>");
+						};
+
+						$this.html(lineText.join(" "));
+						// If we have a headLink, add it back just inside our target, around all the slabText spans
+						if(headLink) {
+							$this.wrapInner('<a href="' + headLink + '" ' + (linkTitle ? 'title="' + linkTitle + '" ' : '') + '/>');
+						};
+					};
+				} else {
+					// We only need the font-size for the resize-to-fit functionality
+					// if not injecting the spans
+					origFontSize = fs;
+				};
+
+				$("span.slabtext", $this).each(function() {
+					var $span       = $(this),
+					// the .text method appears as fast as using custom -data attributes in this case
+						innerText   = $span.text(),
+						wordSpacing = innerText.split(" ").length > 1,
+						diff,
+						ratio,
+						fontSize;
+
+					if(postTweak) {
+						$span.css({
+							"word-spacing":0,
+							"letter-spacing":0
+						});
+					};
+
+					ratio    = parentWidth / $span.width();
+					fontSize = parseFloat(this.style.fontSize) || origFontSize;
+
+					$span.css("font-size", Math.min((fontSize * ratio).toFixed(precision), settings.maxFontSize) + "px");
+
+					// Do we still have space to try to fill or crop
+					diff = !!postTweak ? parentWidth - $span.width() : false;
+
+					// A "dumb" tweak in the blind hope that the browser will
+					// resize the text to better fit the available space.
+					// Better "dumb" and fast...
+					if(diff) {
+						$span.css((wordSpacing ? 'word' : 'letter') + '-spacing', (diff / (wordSpacing ? innerText.split(" ").length - 1 : innerText.length)).toFixed(precision) + "px");
+					};
+				});
+
+				// Add the class slabtextdone to set a display:block on the child spans
+				// and avoid styling & layout issues associated with inline-block
+				$this.addClass("slabtextdone");
+			};
+
+			// Immediate resize
+			resizeSlabs();
+
+			if(!settings.noResizeEvent) {
+				$(window).resize(function() {
+					// Only run the resize code if the viewport width has changed.
+					// we ignore the viewport height as it will be constantly changing.
+					if($(window).width() == viewportWidth) {
+						return;
+					};
+
+					viewportWidth = $(window).width();
+
+					clearTimeout(resizeThrottle);
+					resizeThrottle = setTimeout(resizeSlabs, resizeThrottleTime);
+				});
+			};
+		});
+	};
+})(jQuery);/*global jQuery */
 /*jshint multistr:true browser:true */
 /*!
 * FitVids 1.0.3
@@ -239,7 +317,8 @@ Prism.languages.markup && (Prism.hooks.add("before-highlight", function (a) {
 // Works with either jQuery or Zepto
 })( window.jQuery || window.Zepto );
 /*------------------------------------------------------------------
- Copyright (c) 2013-2014 Viktor Bezdek - Released under The MIT License.
+ Copyright (c) 2013-2014 Viktor Bezdek
+ - Released under The MIT License.
 
  Permission is hereby granted, free of charge, to any person
  obtaining a copy of this software and associated documentation
@@ -263,17 +342,8 @@ Prism.languages.markup && (Prism.hooks.add("before-highlight", function (a) {
  OTHER DEALINGS IN THE SOFTWARE.
  ----------------------------------------------------------------*/
 
-/*
- <a class="icon-gplus-circled" href="#" target="_blank"></a>
- <a class="icon-twitter-circled" href="#" target="_blank"></a>
- <a class="icon-mail-circled" href="#" target="_blank"></a>
- <a class="icon-github-circled" href="#" target="_blank"></a>
- <a class="icon-linkedin-circled" href="#" target="_blank"></a>
- <a class="icon-pinterest-circled" href="#" target="_blank"></a>
- <a class="icon-instagram-circled" href="#" target="_blank"></a>
- */
-
 $(function () {
+	var config = window.ghostentista.config;
 	var siteURL = location.host;
 	var internalLinksQuery = "a[href^='" + siteURL + "'], a[href^='/'], a[href^='./'], a[href^='../'], a[href^='#']";
 	var $window = $(window);
@@ -282,34 +352,19 @@ $(function () {
 	var $relatedPostsContainer = $('#related-posts-container');
 	var $logo = $('#site-head-content');
 	var $header = $('#site-head');
-	var config = window.ghostentista.config;
 	var $footerLinks = $('.get-connected p');
-	$mainContent.fitVids();
-	if (config.socialProfiles.facebook != '') {
-		$footerLinks.append($('<a class="icon-facebook-circled" href="' + config.socialProfiles.facebook + '" target="_blank"></a>'))
-	}
-	if (config.socialProfiles.email != '') {
-		$footerLinks.append($('<a class="icon-mail-circled" href="' + config.socialProfiles.email + '" target="_blank"></a>'))
-	}
-	if (config.socialProfiles.twitter != '') {
-		$footerLinks.append($('<a class="icon-twitter-circled" href="' + config.socialProfiles.twitter + '" target="_blank"></a>'))
-	}
-	if (config.socialProfiles.linkedIn != '') {
-		$footerLinks.append($('<a class="icon-linkedin-circled" href="' + config.socialProfiles.linkedIn + '" target="_blank"></a>'))
-	}
-	if (config.socialProfiles.github != '') {
-		$footerLinks.append($('<a class="icon-github-circled" href="' + config.socialProfiles.github + '" target="_blank"></a>'))
-	}
-	if (config.socialProfiles.pinterest != '') {
-		$footerLinks.append($('<a class="icon-pinterest-circled" href="' + config.socialProfiles.pinterest + '" target="_blank"></a>'))
-	}
-	if (config.socialProfiles.instagram != '') {
-		$footerLinks.append($('<a class="icon-instagram-circled" href="' + config.socialProfiles.instagram + '" target="_blank"></a>'))
-	}
-	if(config.logoBackground != '') {
-		$logo.css({background: config.logoBackground});
 
-	}
+	$mainContent.fitVids();
+
+	var socialProfiles = config.socialProfiles;
+	if (socialProfiles.facebook != '') $footerLinks.append($('<a class="icon-facebook-circled" href="' + socialProfiles.facebook + '" target="_blank"></a>'));
+	if (socialProfiles.email != '') $footerLinks.append($('<a class="icon-mail-circled" href="' + socialProfiles.email + '" target="_blank"></a>'));
+	if (socialProfiles.twitter != '') $footerLinks.append($('<a class="icon-twitter-circled" href="' + socialProfiles.twitter + '" target="_blank"></a>'));
+	if (socialProfiles.linkedIn != '') $footerLinks.append($('<a class="icon-linkedin-circled" href="' + socialProfiles.linkedIn + '" target="_blank"></a>'));
+	if (socialProfiles.github != '') $footerLinks.append($('<a class="icon-github-circled" href="' + socialProfiles.github + '" target="_blank"></a>'));
+	if (socialProfiles.pinterest != '') $footerLinks.append($('<a class="icon-pinterest-circled" href="' + socialProfiles.pinterest + '" target="_blank"></a>'));
+	if (socialProfiles.instagram != '') $footerLinks.append($('<a class="icon-instagram-circled" href="' + socialProfiles.instagram + '" target="_blank"></a>'));
+	if (config.logoBackground != '') $logo.css({background: config.logoBackground});
 
 	// ios < 7 fixed position bug
 	var ios = iOSversion();
@@ -391,10 +446,15 @@ $(function () {
 	$window.trigger('scroll');
 	$window.trigger('resize');
 	setTimeout(function () {
-		Prism.highlightElement();
-		$window.trigger('scroll');
-		$window.trigger('resize');
-	}, 200);
+		$('h2.post-title, h1.post-title').slabText({minCharsPerLine: 15});
+		$('article.loading').each(function () {
+			var $this = $(this);
+			setTimeout(function () {
+				$this.removeClass('loading');
+				$window.trigger('resize');
+			}, Math.random() * 200);
+		});
+	}, 500);
 
 	// if on home, updates related posts in local storage
 	// if on posts, displays related posts if available
@@ -456,7 +516,7 @@ $(function () {
 			m.parentNode.insertBefore(a, m)
 		})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-		ga('create', 'UA-xxxx');
+		ga('create', config.googleAnalytics);
 		ga('send', 'pageview');
 	}
 

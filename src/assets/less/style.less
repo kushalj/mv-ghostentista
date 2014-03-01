@@ -1,8 +1,7 @@
-@import "bootstrap";
+@import "nanostrap";
 @import "fonts";
 @import "grid";
 @import "typo";
-@import "prism";
 
 //==============================================================================
 // Vars
@@ -14,6 +13,7 @@
 @link: #1a75b5;
 @linkHover: #b51e3e;
 @accent: rgba(112, 189, 255, 0.91);
+@featuredBg: #d6f5ff;
 @contentBg: #fff;
 @subtle: #ddd;
 @maxLayoutWidth: 60rem;
@@ -23,7 +23,8 @@
 //==============================================================================
 
 body, p, ul, ol, table {
-  font-family: 'raleway', sans-serif;
+  font-family: 'roboto', sans-serif;
+  font-weight: 100;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -70,6 +71,10 @@ h6 {
 //==============================================================================
 // Global
 //==============================================================================
+
+.cf {
+  .clearfix();
+}
 
 body, body * {
   box-sizing: border-box;
@@ -124,7 +129,7 @@ nav#pagination {
 }
 
 .headerBackground {
-//  background: #000;
+  background: #000;
 }
 
 //==============================================================================
@@ -132,14 +137,13 @@ nav#pagination {
 //==============================================================================
 body.no-fixed-elements {
   header#site-head {
-   position: static;
+    position: static;
   }
   main.content {
-    //position: static;
     margin-top: 0;
-    //padding-top: 5rem !important;
   }
 }
+
 #secondaryTitle {
   box-shadow: 0 0px 30px 0 rgba(0, 0, 0, 0.5);
   text-shadow: -1px -1px 2px rgba(0, 0, 0, 0.35);
@@ -160,7 +164,7 @@ body.no-fixed-elements {
   }
   h2 {
     color: fadeout(#fff, 60%);
-    font-family: 'raleway', sans-serif;
+    font-family: 'roboto', sans-serif;
     text-transform: none;
     font-size: 2em;
   }
@@ -212,7 +216,7 @@ header#site-head {
     margin: 0 auto;
     width: 20em;
     height: 20em;
-    padding-top: 2.5em;
+    padding-top: 0;
     &:hover {
       transform: scale(0.95);
     }
@@ -220,18 +224,20 @@ header#site-head {
   a {
     text-decoration: none;
   }
-  h1, h2 {
+  h1 {
     max-width: 10em;
   }
   h1 {
-    line-height: 1;
-    margin: 0.05em auto 0.05em;
-    padding: 0;
+    display: table-cell;
+    vertical-align: middle;
+    width: 5em;
+    height: 3.4em;
+    line-height: 0.85;
+    margin: 0.05em;
     text-align: center;
     color: #fff;
     font-size: 6em;
-    padding-bottom: 0.1em;
-    padding-top: 0.35em;
+    padding: 0 0.1em;
     &.image-logo {
       padding-top: 0;
       padding-bottom: 0;
@@ -243,19 +249,6 @@ header#site-head {
       background-repeat: no-repeat;
       background-size: contain;
     }
-  }
-  h2 {
-    text-shadow: -1px -1px 2px rgba(0, 0, 0, 0.15);
-    font-size: 1.5em;
-    height: 3em;
-    line-height: 3.5em;
-    padding: 0;
-    margin: 0 auto;
-    color: rgba(255, 255, 255, 1);
-    text-align: center;
-    font-weight: normal;
-    text-transform: uppercase;
-    border-top: 3px double fadeout(#fff, 50%);
   }
 }
 
@@ -283,7 +276,13 @@ main.content {
   }
 
   article {
+    transition: opacity 0.3s ease;
+    opacity: 1;
+    &.loading {
+      opacity: 0;
+    }
     &.post {
+      padding: 1.5em;
       .column(12);
     }
     &.detail-post {
@@ -316,6 +315,13 @@ main.content {
         left: 43%;
         margin-top: 0em;
         color: @subtle;
+      }
+    }
+    &.featured {
+      background-color: @featuredBg;
+      padding: 1.5em;
+      header {
+        border-bottom: 1px solid desaturate(darken(@featuredBg, 20%), 50%) !important;
       }
     }
     .post-meta {
@@ -359,6 +365,7 @@ main.content {
       margin: 0.25em 0 1rem;
       text-align: center;
       transition: transform 0.2s ease;
+      width: 100%;
       a {
         transition: color 0.2s ease;
         text-decoration: none;
@@ -520,16 +527,22 @@ footer.site-footer {
       text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
     }
     .copybox {
-      line-height: 2;
+      line-height: 1;
       padding-top: 3.5em;
-      position: relative;
+      position: absolute;
+      bottom: 1em;
       text-align: right;
       opacity: 0.5;
       .column(4);
+      a:hover {
+        color: #fff;
+      }
       p {
         margin: 0;
       }
       p.poweredby {
+        margin-top: 1em;
+        line-height: 1.5;
         font-size: 0.65em;
         text-transform: uppercase;
       }
@@ -554,7 +567,10 @@ footer.site-footer {
   }
 }
 
-.mailchimp {margin-top: 10px; float: right;}
+.mailchimp {
+  margin-top: 10px;
+  float: right;
+}
 
 //==============================================================================
 // Media queries
@@ -708,114 +724,6 @@ footer.site-footer {
   }
 }
 
-/*
-@media screen and (max-width: 40em) {
-  body {
-    font-size: 1em;
-    header#site-head {
-      .vertical {
-        padding-top: 4.5em;
-      }
-      height: 37em;
-    }
-    main.content {
-      margin-top: 30em;
-    }
-  }
-}
-
-@media screen and (min-width: 40em) and (max-width: 60em) {
-  body {
-    font-size: 1.2em;
-    header#site-head {
-      .vertical {
-        padding-top: 6em;
-      }
-      height: 41em;
-    }
-    main.content {
-      margin-top: 33em;
-    }
-  }
-}
-
-@media screen and (min-width: 60em) {
-  body {
-    font-size: 1.4em;
-    header#site-head {
-      .vertical {
-        padding-top: 8em;
-        animation: pat-anim infinite 15s linear;
-      }
-      #site-head-content {
-        animation: logo-anim infinite 10s linear;
-      }
-      height: 45em;
-    }
-    main.content {
-      margin-top: 37em;
-    }
-  }
-
-  footer.site-footer {
-    animation: pat-anim infinite 15s linear;
-  }
-}
-*/
-
 //==============================================================================
 // Keyframe animations
 //==============================================================================
-
-@keyframes pat-anim {
-  /*
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 10rem 10rem;
-  }
-  */
-}
-
-@keyframes logo-anim {
-  /*
-  0% {
-    box-shadow: inset 0rem 0 10rem 10rem fadeout(darken(#FF5C5C, 0%), 85%);
-  }
-  10% {
-    box-shadow: none;
-  }
-  20% {
-    box-shadow: inset 10rem 10rem 20rem 10rem fadeout(darken(#FF5C5C, 0%), 75%);
-  }
-  30% {
-    box-shadow: none;
-  }
-  40% {
-    box-shadow: inset 0rem 0 5rem 5rem fadeout(#b545ff, 65%);
-  }
-  50% {
-    box-shadow: none;
-  }
-  60% {
-    box-shadow: inset -10rem -10rem 20rem 10rem fadeout(darken(#FF5C5C, 0%), 55%);
-  }
-  70% {
-    box-shadow: none;
-  }
-  80% {
-    box-shadow: inset -10rem 10rem 5rem 10rem fadeout(darken(#ff3db2, 5%), 35%);
-  }
-  90% {
-    box-shadow: none;
-  }
-  100% {
-    box-shadow: inset 10rem 10rem 20rem 10rem fadeout(darken(#FF5C5C, 0%), 85%);
-  }
-  */
-}
-
-.cf {
-  .clearfix();
-}
