@@ -7,7 +7,7 @@
 Responsive, asynchronous, content centric theme for Ghost. Inspired by my own WordPress theme Kontentista (not quite finished). Built using modern web technologies and with a help of LESS preprocessor. Tested on IE9+, Chrome Firefox, Safari, iOS7 and Android 4.3 on Nexus 7.
 
 ### Demo
-- [Latest version can be seen at Etheeks.com](http://www.etheeks.com)
+- [Latest version can be seen at Etheeks.com](http://www.etheeks.com) (Etheeks is running on 1.0 alpha which is also here on another branch)
 
 ## Features
 - Responsive (images, videos included)
