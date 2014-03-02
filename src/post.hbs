@@ -2,14 +2,11 @@
 <main id="main-content" class="content" role="main">
     <div class="article-wrapper">
         <article class="loading detail-post">
-
-		  {{! Everything inside the #post tags pulls data from the post }}
 		  {{#post}}
-
-		  {{! Everything below outputs content of the the post which has been published }}
-                  <span class="post-meta" name="post-content"><time
-                          datetime="{{date published_at timeago="true"}}">{{date published_at timeago="true"}}</time> {{#if tags}}
-                      on {{tags separator=" | "}}{{/if}}</span>
+                  <span class="post-meta" name="post-content">
+                      <time datetime="{{date published_at timeago="true"}}">{{date published_at timeago="true"}}</time>
+	                {{#if tags}}on {{tags separator=" | "}}{{/if}}
+                  </span>
 
                   <h1 class="post-title">{{{title}}}</h1>
 
@@ -19,7 +16,6 @@
 
                   <section class="share">
                       <h4>Share this post</h4>
-
                       <div class="links">
                           <a class="icon-twitter-circled"
                              href="http://twitter.com/share?text={{title}}&url={{url absolute="true"}}"
@@ -39,28 +35,21 @@
                   </section>
 
                   <footer class="post-footer">
-
-				{{#if author}}
-                            <section class="author">
-                                <div class="image"><img src="{{author.image}}" title="{{author.name}}"/></div>
-                                <div class="about">
-                                    <h4>{{author.name}}</h4>
-
-                                    <p>{{author.bio}}</p>
-                                </div>
-                            </section>
+				<nav class="related-posts">
+				  <h4>Related posts</h4>
+				  <ul></ul>
+				</nav>
+	                  {{#if author.bio}}
+				<section class="author">
+				  <div class="image"><img src="{{author.image}}" title="{{author.name}}"/></div>
+				  <div class="about">
+				      <h4>{{author.name}}</h4>
+				      <p>{{author.bio}}</p>
+				  </div>
+				</section>
 				{{/if}}
-
                   </footer>
-
 		  {{/post}}
-
-            <nav class="related-posts">
-                <h4>Related posts</h4>
-                <ul>
-                </ul>
-            </nav>
-
         </article>
     </div>
 

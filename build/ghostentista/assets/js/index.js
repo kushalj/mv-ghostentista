@@ -890,10 +890,15 @@ $(function () {
 	var $relatedPostsContainer = $('#related-posts-container');
 	var $logo = $('#site-head-content');
 	var $header = $('#site-head');
-	var $footerLinks = $('.get-connected p');
+	var $footerLinks = $('.get-connected p:first-child');
 
 	$mainContent.fitVids();
 
+	//---------------------------------------------------------------------
+	// Config Stuff
+	//---------------------------------------------------------------------
+
+	// social profiles
 	var socialProfiles = config.socialProfiles;
 	if (socialProfiles.facebook != '') $footerLinks.append($('<a class="icon-facebook-circled" href="' + socialProfiles.facebook + '" target="_blank"></a>'));
 	if (socialProfiles.email != '') $footerLinks.append($('<a class="icon-mail-circled" href="' + socialProfiles.email + '" target="_blank"></a>'));
@@ -903,6 +908,15 @@ $(function () {
 	if (socialProfiles.pinterest != '') $footerLinks.append($('<a class="icon-pinterest-circled" href="' + socialProfiles.pinterest + '" target="_blank"></a>'));
 	if (socialProfiles.instagram != '') $footerLinks.append($('<a class="icon-instagram-circled" href="' + socialProfiles.instagram + '" target="_blank"></a>'));
 	if (config.logoBackground != '') $logo.css({background: config.logoBackground});
+
+	// author bio
+	if(!config.showAuthorOnPostDetail) $('section.author').remove();
+
+	// theme & platform badge
+	if(!config.showThemeBadge) $('p.poweredby').remove();
+
+	// content to be added
+	if(config.appendContent) $('body').append($(config.appendContent));
 
 	// ios < 7 fixed position bug
 	var ios = iOSversion();
@@ -952,22 +966,6 @@ $(function () {
 
 	// resize does equalization of post titles
 	$window.resize(function () {
-		/*
-		var articles = $('.post');//.find('h2.page-title');
-		for (var x = 0; x < articles.length; x += 2) {
-			var ea = $(articles[x]).find('.post-title');
-			var oa = $(articles[x + 1]).find('.post-title');
-
-			ea.css({height: 'auto', paddingTop: 0});
-			oa.css({height: 'auto', paddingTop: 0});
-
-			var eh = ea.innerHeight(), oh = oa.innerHeight();
-			var th = Math.max(eh, oh) + 'px';
-			var pt = Math.abs(eh - oh) / 2 + 'px';
-			ea.css({height: th, paddingTop: eh < oh ? pt : 0});
-			oa.css({height: th, paddingTop: eh > oh ? pt : 0});
-		}
-		*/
 		$window.trigger('scroll');
 	});
 
@@ -994,7 +992,7 @@ $(function () {
 				$window.trigger('resize');
 			}, Math.random() * 200);
 		});
-	}, 500);
+	}, 200);
 
 
 	// if on home, updates related posts in local storage

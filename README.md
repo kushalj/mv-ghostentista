@@ -1,6 +1,6 @@
 # Ghostentista [![Project Status](http://stillmaintained.com/viktorbezdek/ghostentista.png)](http://stillmaintained.com/viktorbezdek/ghostentista) [![Build Passing](https://travis-ci.org/viktorbezdek/ghostentista.png)](https://travis-ci.org/viktorbezdek/ghostentista)
 ## Theme for Ghost Blogging Platform
-version 1.0.0-alpha
+version 1.0.0-beta
 
 Responsive, beautiful, usable, open source, content centric theme for Ghost Blogging Platform. Built using Grunt.js, styled using LESS, configurable and linted.
 
@@ -16,7 +16,7 @@ Responsive, beautiful, usable, open source, content centric theme for Ghost Blog
 
 ____
 ### Known issues
-Probably lots of issues since its alpha.
+Probably lots of issues since its beta.
 
 ____
 ## Like the theme? Want to show your appreciation?
@@ -100,6 +100,9 @@ Copyright 2013, Chris Coyier WTFPL
 
 *SlabText 2.3*
 jQuery slabtext plugin v2.3 MIT/GPL2 @freqdec
+
+*Salvattore 1.0.5*
+Masonry helper, Rolando Murillo and Giorgio Leveroni
 </small>
 ___
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:

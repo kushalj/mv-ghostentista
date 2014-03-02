@@ -29,18 +29,20 @@ var config = {
 	// links to your social profiles
 	// note: empty link = button wont appear
 	socialProfiles: {
-		facebook: '', 			// ex: https://www.facebook.com/username
-		twitter: '', 			// ex: https://twitter.com/username
-		github: '',				// ex: https://github.com/username
-		email: '',				// ex: you@yourdomain.com
-		linkedIn: '',			// ex: http://linkedin.com/in/username
-		gplus: '', 				// ex: https://plus.google.com/something
-		pinterest: '',			// ex: https://pinterest.com/username
-		instagram: ''			// ex: http://instagram.com/username
+		facebook: '', 					// ex: https://www.facebook.com/username
+		twitter: '', 					// ex: https://twitter.com/username
+		github: '',						// ex: https://github.com/username
+		email: '',						// ex: you@yourdomain.com
+		linkedIn: '',					// ex: http://linkedin.com/in/username
+		gplus: '', 						// ex: https://plus.google.com/something
+		pinterest: '',					// ex: https://pinterest.com/username
+		instagram: ''					// ex: http://instagram.com/username
 	},
-	showThemeBadge: true,		// Show or hide theme and platform credits
-	googleAnalytics: '', 		// ex: UA-XXXXX-XX, if empty will not track anything
-	logoBackground: 'rgba(0,0,0,0.75)' 	// Enter anything which suits css background shorthand. Ex: #ffcc00, green
+	showThemeBadge: true,				// Show or hide theme and platform credits
+	showAuthorOnPostDetail: true,		// Show author bio on post detail
+	googleAnalytics: '', 				// ex: UA-XXXXX-XX, if empty will not track anything
+	logoBackground: 'rgba(0,0,0,0.75)',	// Enter anything which suits css background shorthand. Ex: #ffcc00, green
+	appendContent: null					// HTML or text to be appended just before closing body tag
 }
 
 window.ghostentista.config = config;
