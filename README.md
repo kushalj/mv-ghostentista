@@ -1,28 +1,34 @@
 # Ghostentista [![Project Status](http://stillmaintained.com/viktorbezdek/ghostentista.png)](http://stillmaintained.com/viktorbezdek/ghostentista) [![Build Passing](https://travis-ci.org/viktorbezdek/ghostentista.png)](https://travis-ci.org/viktorbezdek/ghostentista)
 ## Theme for Ghost Blogging Platform
-version 1.0.0-beta
+version 1.0.0-rc1
 
-Responsive, beautiful, usable, open source, content centric theme for Ghost Blogging Platform. Built using Grunt.js, styled using LESS, configurable and linted.
+Truly responsive, content centric and constantly evolving theme for Ghost Blogging Platform.
 
 ### Demo
-- [Latest version can be seen at Etheeks.com](http://www.etheeks.com)
-- [Join newsletter here](http://www.etheeks.com/#newsletter)
+- Latest version can be seen at [Etheeks.com](http://www.etheeks.com)
 
 ### Features
-@todo rewrite completely
+- Fluid and Responsive
+- Slab headlines
+- Supports all Ghost 0.4 features
+- Grunt built
+- LESS styled
+- Easy customization via LESS variables
 
 ### How to build and stuff
-@todo write guide
+@fixme
 
 ____
 ### Known issues
-Probably lots of issues since its beta.
+Should be stable in most cases.
 
 ____
 ## Like the theme? Want to show your appreciation?
 Buy me a beer via [gittip](https://www.gittip.com/viktorbezdek/).
 [![Support via Gittip](https://rawgithub.com/twolfson/gittip-badge/0.1.0/dist/gittip.png)](https://www.gittip.com/viktorbezdek/)
+
 ____
+
 ## Changelog
 
 ### 1.0.0
@@ -33,7 +39,6 @@ ____
 - Enhanced typography (optimal chars per line on each platform)
 - Trendy slabby headlines
 - Responsive masonry(ish) layout
-- Nanostrap (Bootstrap) styled forms and components for convenience
 - Featured posts support
 - FitVids.js for responsive videos (thanks @anieto)
 - Lots of changes, tweaks and enhancements
