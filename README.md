@@ -13,14 +13,30 @@ Truly responsive, content centric and constantly evolving theme for Ghost Bloggi
 - Supports all Ghost 0.4 features
 - Grunt built
 - LESS styled
-- Easy customization via LESS variables
+- Easy colors customization via LESS variables
+- Simple theme customization via config file
 
-### How to build and stuff
-@fixme
+### Usage
+
+##### Simple
+- Download latest build [here](http://www.viktorbezdek.cz/download/ghostentista/ghostentista-1.0.0-rc1.zip)
+- Customize theme in `assets/js/config.js`
+
+##### Developer friendly
+- Node and NPM is required
+- Clone [repository](https://github.com/viktorbezdek/ghostentista.git)
+- Install dependencies with `npm install`
+- Build using command `grunt`
+- If you want to customize looks, do it in `src/less/style.less` then rebuild using `grunt`
+- Setup theme in `src/js/config.js` then rebuild using `grunt`
+- Built Ghost theme is in `build/ghostentista` folder
 
 ____
 ### Known issues
 Should be stable in most cases.
+____
+### Changelog
+- See [CHANGELOG.md](https://github.com/viktorbezdek/ghostentista/blob/1.0.0/CHANGELOG.md)
 
 ____
 ## Like the theme? Want to show your appreciation?
@@ -28,72 +44,6 @@ Buy me a beer via [gittip](https://www.gittip.com/viktorbezdek/).
 [![Support via Gittip](https://rawgithub.com/twolfson/gittip-badge/0.1.0/dist/gittip.png)](https://www.gittip.com/viktorbezdek/)
 
 ____
-
-## Changelog
-
-### 1.0.0
-- Grunt build for great and easy local development
-- Easy customisation of colors and stuff in style.less
-- New open source paragraph font Roboto
-- Support for all languages using latin and latin extended alphabet
-- Enhanced typography (optimal chars per line on each platform)
-- Trendy slabby headlines
-- Responsive masonry(ish) layout
-- Featured posts support
-- FitVids.js for responsive videos (thanks @anieto)
-- Lots of changes, tweaks and enhancements
-- (NOT YET) Component helpers - gallery, masonry, buttons, highlights and other cool stuff
-- (NOT YET) Menu support (By adding links to `assets/js/config.js` file. No other way. Blame @TryGhost)
-- (NOT YET) Custom `error.hbs` page
-- (NOT YET) Smart logo colors by detecting background color with `BackgroundCheck.js`
-- (FAR FROM DONE) The Configurator
-____
-### 0.6.0
-- loading assets using ghosts helpers bug #10
-- template for pages
-- working correctly on Android 4.3 default browser bug #7
-- got rid of async page loading so we are compatible with disqus bug #8
-- configuration in `assets/js/config.js`
-
-### 0.5.1
-- fixed ios < 7 fixed layout issue
-- added mail icon fixed issue #5
-- combined js
-- optimized stylesheet by csso
-
-____
-### 0.5
-- simplified stylesheets
-- dynamic navbar
-- better layout for post listings
-- typography improvements
-- rethought footer
-- performance optimized
-- tweaked responsive behavior
-- fixed issue #3
-- fixed issue #4
-
-_____
-#### 0.4.2
-- asynchronous paging
-- LESS styles are no longer part of the project
-   
-______
-#### 0.4.1 - service release
-- fixed issues #1 #2
-- animations only for big screens
-- text size corrections to maintain optimal number of characters on line
-   
-_____
-#### 0.4
-- rewriten most layout code, 18% faster page rendering in chrome
-- completely rewriten typography using golden cut scaling
-- changed fonts to League Gothic for headers and Raleway for rest
-- rewritten and rethought breakpoints
-- more tidy HTML
-- nifty animation on image logo
-- temporarily removed footer static position until I have nervs to deal with fraking iOS7
-- pagination working
 
 ## Copyright & License
 
