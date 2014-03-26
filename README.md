@@ -36,7 +36,7 @@ ____
 Should be stable in most cases.
 ____
 ### Changelog
-- See [CHANGELOG.md](https://github.com/viktorbezdek/ghostentista/blob/1.0.0/CHANGELOG.md)
+- See [CHANGELOG.md](https://github.com/viktorbezdek/ghostentista/blob/1.0.0/changelog.md)
 
 ____
 ## Like the theme? Want to show your appreciation?
