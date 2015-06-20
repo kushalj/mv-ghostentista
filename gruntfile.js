@@ -104,6 +104,12 @@ module.exports = function (grunt) {
 						cwd: './src/assets/js/',
 						src: ['config.js'],
 						dest: './build/movieville-ghostentista/assets/js/'
+					},
+					{
+						expand: true,
+						cwd: './src',
+						src: ['package.json'],
+						dest: './build/movieville-ghostentista/'
 					}
                 ]
             },
