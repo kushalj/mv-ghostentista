@@ -5,7 +5,7 @@ version 1.0.0-rc1
 Truly responsive, content centric and constantly evolving theme for Ghost Blogging Platform.
 
 ### Demo
-- Latest version can be seen at [Etheeks.com](http://www.etheeks.com)
+- Latest version can be seen at [Movieville.org](http://www.movieville.org)
 
 ### Features
 - Fluid and Responsive
@@ -18,13 +18,9 @@ Truly responsive, content centric and constantly evolving theme for Ghost Bloggi
 
 ### Usage
 
-##### Simple
-- Download latest build [here](http://www.viktorbezdek.cz/download/ghostentista/ghostentista-1.0.0-rc1.zip)
-- Customize theme in `assets/js/config.js`
-
 ##### Developer friendly
 - Node and NPM is required
-- Clone [repository](https://github.com/viktorbezdek/ghostentista.git)
+- Clone [repository](https://github.com/kushalj/ghostentista)
 - Install dependencies with `npm install`
 - Build using command `grunt`
 - If you want to customize looks, do it in `src/less/style.less` then rebuild using `grunt`
@@ -39,17 +35,16 @@ ____
 - See [CHANGELOG.md](https://github.com/viktorbezdek/ghostentista/blob/1.0.0/changelog.md)
 
 ____
-## Like the theme? Want to show your appreciation?
-Buy me a beer via [gittip](https://www.gittip.com/viktorbezdek/).
-[![Support via Gittip](https://rawgithub.com/twolfson/gittip-badge/0.1.0/dist/gittip.png)](https://www.gittip.com/viktorbezdek/)
 
 ____
 
 ## Copyright & License
 
-Copyright (C) 2013 Viktor Bezdek - Released under the MIT License.
+Copyright (C) 2015 Kushal Joshi - Released under the MIT License.
 
 <small>
+This theme was forked from Viktor Bezdek's [ghostentista](https://github.com/viktorbezdek/ghostentista) theme. It was forked to implement certain changes and features specifically for the Movieville.org site.
+
 *FitVids 1.0.3*
 Copyright 2013, Chris Coyier WTFPL
 
