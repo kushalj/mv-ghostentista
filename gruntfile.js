@@ -9,7 +9,7 @@ module.exports = function (grunt) {
     grunt.initConfig({
         frontend: {
             force: false,
-            webroot: './build/ghostentista/'
+            webroot: './build/movieville-ghostentista/'
         },
         'frontend-js': {
             main: {
@@ -18,7 +18,7 @@ module.exports = function (grunt) {
                     uglify: {}
                 },
                 files: {
-                    'build/ghostentista/assets/js/index.min.js': [
+                    'build/movieville-ghostentista/assets/js/index.min.js': [
 						'src/assets/js/jquery.slabtext.js',
 						'src/assets/js/jquery.fitvids.js',
 						'src/assets/js/salvattore.js',
@@ -31,7 +31,7 @@ module.exports = function (grunt) {
                     minify: false,
                 },
                 files: {
-                    'build/ghostentista/assets/js/index.js': [
+                    'build/movieville-ghostentista/assets/js/index.js': [
 						'src/assets/js/jquery.slabtext.js',
 						'src/assets/js/jquery.fitvids.js',
 						'src/assets/js/salvattore.js',
@@ -46,7 +46,7 @@ module.exports = function (grunt) {
                     minify: true
                 },
                 files: [
-                    {src: 'build/ghostentista/assets/css/style.css', dest: 'build/ghostentista/assets/css/style.min.css'}
+                    {src: 'build/movieville-ghostentista/assets/css/style.css', dest: 'build/movieville-ghostentista/assets/css/style.min.css'}
                 ]
             },
             dev: {
@@ -55,7 +55,7 @@ module.exports = function (grunt) {
                     beautify: true
                 },
                 files: [
-                    {src: 'build/ghostentista/assets/css/style.css', dest: 'build/ghostentista/assets/css/style.css'}
+                    {src: 'build/movieville-ghostentista/assets/css/style.css', dest: 'build/movieville-ghostentista/assets/css/style.css'}
                 ]
             }
         },
@@ -64,8 +64,8 @@ module.exports = function (grunt) {
                 browsers: ['last 2 version', 'ie 8']
             },
             single_file: {
-                src: 'build/ghostentista/assets/css/style.css',
-                dest: 'build/ghostentista/assets/css/style.css'
+                src: 'build/movieville-ghostentista/assets/css/style.css',
+                dest: 'build/movieville-ghostentista/assets/css/style.css'
             }
         },
         less: {
@@ -74,7 +74,7 @@ module.exports = function (grunt) {
                     clean_css: false
                 },
                 files: {
-                    "build/ghostentista/assets/css/style.css": "src/assets/less/style.less"
+                    "build/movieville-ghostentista/assets/css/style.css": "src/assets/less/style.less"
                 }
             }
         },
@@ -85,25 +85,25 @@ module.exports = function (grunt) {
                         expand: true,
                         cwd: './src/assets/img/',
                         src: ['**'],
-                        dest: './build/ghostentista/assets/img/'
+                        dest: './build/movieville-ghostentista/assets/img/'
                     },
                     {
                         expand: true,
                         cwd: './src/assets/fonts/',
                         src: ['**'],
-                        dest: './build/ghostentista/assets/fonts/'
+                        dest: './build/movieville-ghostentista/assets/fonts/'
                     },
 					{
 						expand: true,
 						cwd: './src/',
 						src: ['*'],
-						dest: './build/ghostentista/'
+						dest: './build/movieville-ghostentista/'
 					},
 					{
 						expand: true,
 						cwd: './src/assets/js/',
 						src: ['config.js'],
-						dest: './build/ghostentista/assets/js/'
+						dest: './build/movieville-ghostentista/assets/js/'
 					}
                 ]
             },
@@ -112,7 +112,7 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: './build/',
-                        src: ['ghostentista/**'],
+                        src: ['movieville-ghostentista/**'],
                         dest: '../Ghost-0.3.4/content/themes/'
                     }
                 ]
