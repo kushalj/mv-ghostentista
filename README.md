@@ -1,4 +1,6 @@
-# Movieville-Ghostentista [![Project Status](https://stillmaintained.com/kushalj/mv-ghostentista.png)](https://stillmaintained.com/kushalj/mv-ghostentista) 
+# Movieville-Ghostentista
+[![Project Status](https://stillmaintained.com/kushalj/mv-ghostentista.png)](https://stillmaintained.com/kushalj/mv-ghostentista) 
+
 
 ## Theme for Ghost Blogging Platform
 version 1.0.0-rc1
