@@ -1,17 +1,17 @@
 {
-  "name": "Ghostentista",
+  "name": "Movieville-Ghostentista",
   "description": "Ghost Theme - Responsive, AJAX driven, Semantic and Beautiful",
   "author": {
-    "name": "Viktor Bezdek",
-    "url": "http://viktorbezdek.cz/"
+    "name": "Kushal Joshi",
+    "url": "http://movieville.org/"
   },
-  "homepage": "http://etheeks.com/",
+  "homepage": "http://movieville.org/",
   "repository": {
     "type": "git",
-    "url": "git://https://github.com/viktorbezdek/ghostentista/ghostentista.git"
+    "url": "https://github.com/kushalj/mv-ghostentista"
   },
   "bugs": {
-    "url": "https://github.com/viktorbezdek/ghostentista/issues"
+    "url": "https://github.com/kushalj/mv-ghostentista/issues"
   },
   "licenses": [
     {
@@ -19,7 +19,7 @@
       "url": "http://opensource.org/licenses/MIT"
     }
   ],
-  "version": "0.5.1",
+  "version": "1.0.0",
   "dependencies": {
     "grunt-cli": "~0.1.11",
     "grunt": "~0.4.2",
