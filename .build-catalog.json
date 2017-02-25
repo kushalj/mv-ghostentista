@@ -105,8 +105,8 @@
 		]
 	},
 	"/assets/js/index.js": {
-		"hash": "1f93f33",
-		"date": "20150620030033",
+		"hash": "76847e91",
+		"date": "20170225215756",
 		"versioned": "/assets/js/index.js",
 		"files": [
 			{
@@ -116,7 +116,7 @@
 			},
 			{
 				"file": "/Users/kushal/code/mv/mv-ghostentista/src/assets/js/jquery.fitvids.js",
-				"hash": "472ae5fd",
+				"hash": "68bf0d3e",
 				"versioned": "/Users/kushal/code/mv/mv-ghostentista/src/assets/js/jquery.fitvids.js"
 			},
 			{

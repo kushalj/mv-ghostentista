@@ -101,6 +101,12 @@ module.exports = function (grunt) {
 					},
 					{
 						expand: true,
+						cwd: './src/partials/',
+						src: ['*'],
+						dest: './build/movieville-ghostentista/partials/'
+					},
+					{
+						expand: true,
 						cwd: './src/assets/js/',
 						src: ['config.js'],
 						dest: './build/movieville-ghostentista/assets/js/'
@@ -118,8 +124,8 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: './build/',
-                        src: ['movieville-ghostentista/**'],
-                        dest: '../Ghost-0.3.4/content/themes/'
+                        src: ['movieville-ghostentista/**/*'],
+                        dest: '../Ghost-0.11.4-mv_dev/content/themes/'
                     }
                 ]
             }
