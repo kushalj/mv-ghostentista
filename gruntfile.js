@@ -125,7 +125,7 @@ module.exports = function (grunt) {
                         expand: true,
                         cwd: './build/',
                         src: ['movieville-ghostentista/**/*'],
-                        dest: '../Ghost-0.11.4-mv_dev/content/themes/'
+                        dest: '../mv/Ghost-0.11.4-mv_dev/content/themes/'
                     }
                 ]
             }

@@ -106,28 +106,28 @@
 	},
 	"/assets/js/index.js": {
 		"hash": "76847e91",
-		"date": "20170225215756",
+		"date": "20170226180001",
 		"versioned": "/assets/js/index.js",
 		"files": [
 			{
-				"file": "/Users/kushal/code/mv/mv-ghostentista/src/assets/js/jquery.slabtext.js",
+				"file": "/Users/kushal/code/mv-ghostentista/src/assets/js/jquery.slabtext.js",
 				"hash": "667c2b76",
-				"versioned": "/Users/kushal/code/mv/mv-ghostentista/src/assets/js/jquery.slabtext.js"
+				"versioned": "/Users/kushal/code/mv-ghostentista/src/assets/js/jquery.slabtext.js"
 			},
 			{
-				"file": "/Users/kushal/code/mv/mv-ghostentista/src/assets/js/jquery.fitvids.js",
+				"file": "/Users/kushal/code/mv-ghostentista/src/assets/js/jquery.fitvids.js",
 				"hash": "68bf0d3e",
-				"versioned": "/Users/kushal/code/mv/mv-ghostentista/src/assets/js/jquery.fitvids.js"
+				"versioned": "/Users/kushal/code/mv-ghostentista/src/assets/js/jquery.fitvids.js"
 			},
 			{
-				"file": "/Users/kushal/code/mv/mv-ghostentista/src/assets/js/salvattore.js",
+				"file": "/Users/kushal/code/mv-ghostentista/src/assets/js/salvattore.js",
 				"hash": "e476a2",
-				"versioned": "/Users/kushal/code/mv/mv-ghostentista/src/assets/js/salvattore.js"
+				"versioned": "/Users/kushal/code/mv-ghostentista/src/assets/js/salvattore.js"
 			},
 			{
-				"file": "/Users/kushal/code/mv/mv-ghostentista/src/assets/js/index.js",
+				"file": "/Users/kushal/code/mv-ghostentista/src/assets/js/index.js",
 				"hash": "29780af",
-				"versioned": "/Users/kushal/code/mv/mv-ghostentista/src/assets/js/index.js"
+				"versioned": "/Users/kushal/code/mv-ghostentista/src/assets/js/index.js"
 			}
 		]
 	},
